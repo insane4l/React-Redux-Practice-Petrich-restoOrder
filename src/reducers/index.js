@@ -1,6 +1,7 @@
 const initialState = {
     menu: [],
-    loading: true
+    loading: true,
+    items: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -16,6 +17,33 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 menu: state.menu,
                 loading: true
+            };
+        case 'ITEM_ADD_TO_CART':
+            const selectedItem = state.menu.find(item => item.id === action.payload);
+            const newItem = {
+                title: selectedItem.title,
+                price: selectedItem.price,
+                url: selectedItem.url,
+                id: selectedItem.id
+            };
+            return {
+                ...state,
+                items: [
+                    ...state.items,
+                    newItem
+
+                ]
+            };
+        case 'ITEM_REMOVE_FROM_CART':
+            const indx = state.items.findIndex(item => item.id === action.payload);
+            return {
+                ...state,
+                items: [
+                    ...state.items.slice(0, indx),
+                    ...state.items.slice(indx + 1)
+
+                ]
+                
             };
         default:
             return state;
