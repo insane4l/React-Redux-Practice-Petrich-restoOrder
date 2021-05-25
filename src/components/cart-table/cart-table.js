@@ -11,12 +11,12 @@ const CartTable = ({items, deleteFromCart}) => {
             <div className="cart__list">
                 {
                     items.map(item => {
-                        const {title, url, price, id} = item;
+                        const {title, url, price, id, quantity} = item;
                         return (
                             <div key={id} className="cart__item">
                                 <img src={url} className="cart__item-img" alt={title}></img>
                                 <div className="cart__item-title">{title}</div>
-                                <div className="cart__item-price">{price}$</div>
+                                <div className="cart__item-price">{price}$ x{quantity}</div>
                                 <div onClick={() => deleteFromCart(id)} className="cart__close">&times;</div>
                             </div>
                         )
