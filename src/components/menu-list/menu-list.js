@@ -11,14 +11,14 @@ import './menu-list.scss';
 class MenuList extends Component {
 
     componentDidMount() {
-        this.props.menuRequested();
+        const {menuRequested, RestoService, menuLoaded, menuError} = this.props;
 
-        const {RestoService} = this.props;
+        menuRequested();
         RestoService.getMenuItems()
             .then(items => {
-                this.props.menuLoaded(items);
+                menuLoaded(items);
             })
-            .catch(() => this.props.menuError());
+            .catch(() => menuError());
         
     }
 
@@ -46,19 +46,21 @@ class MenuList extends Component {
 };
 
 const View = ({items}) => {
-
     return (
-        <ul className="menu__list">
-            {items}
-        </ul>
+        <>
+            <div className="menu__page-title">Menu</div>
+            <ul className="menu__list">
+                {items}
+            </ul>
+        </>
     ) 
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({menu, loading, error}) => {
     return {
-        menuItems: state.menu,
-        loading: state.loading,
-        error: state.error
+        menuItems: menu,
+        loading,
+        error
     }
 };
 

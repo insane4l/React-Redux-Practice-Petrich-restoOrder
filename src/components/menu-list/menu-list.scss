@@ -7,4 +7,12 @@
         align-items: flex-start;
         flex-wrap: wrap;
     }
+    &__page-title {
+        font-size: 36px;
+        color: #fff;
+        text-align: center;
+        font-weight: 400;
+        text-transform: uppercase;
+        margin-top: 40px;
+    }
 }

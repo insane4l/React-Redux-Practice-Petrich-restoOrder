@@ -52,11 +52,12 @@ const reducer = (state = initialState, action) => {
 
             // if the item was not in the cart
             const itemFromMenu = state.menu.find(item => item.id === clickedItemId);
+            const {title, price, url, id} = itemFromMenu;
             const newItem = {
-                title: itemFromMenu.title,
-                price: itemFromMenu.price,
-                url: itemFromMenu.url,
-                id: itemFromMenu.id,
+                title,
+                price,
+                url,
+                id,
                 quantity: 1
             };
             return {

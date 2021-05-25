@@ -31,7 +31,6 @@ const deleteFromCart = (id) => {
     }
 };
 
-
 export {
     menuLoaded,
     menuRequested,

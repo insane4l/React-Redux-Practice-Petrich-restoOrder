@@ -1,7 +1,7 @@
 export default class RestoService {
     _apiBase = 'http://localhost:3000';
 
-    getResource = async (url) => {
+    async getResource(url) {
         const response = await fetch(`${this._apiBase}${url}`);
         
         if (!response.ok) {
@@ -11,7 +11,7 @@ export default class RestoService {
         return await response.json();
     }
     
-    getMenuItems = async () => {
+    async getMenuItems() {
         return await this.getResource(`/menu/`);
     }
 
@@ -33,7 +33,7 @@ export default class RestoService {
         }
     }
 
-    async getOrderNumber(){
+    async getOrderNumber() {
         const res = await this.getResource('/orders/');
         const orderNumber = res.length+1;
 

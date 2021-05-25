@@ -6,6 +6,12 @@ import withRestoService from '../hoc';
 import './cart-table.scss';
 
 const CartTable = ({items, deleteFromCart, RestoService}) => {
+    const emptyCart = items.length < 1;
+    
+    if (emptyCart) {
+        return <EmptyCart/>
+    }
+
     return (
         <>
             <div className="cart__title">Ваш заказ:</div>
@@ -26,24 +32,30 @@ const CartTable = ({items, deleteFromCart, RestoService}) => {
             </div>
             <button onClick = {() => {RestoService.setOrder( generateOrder(items))} }
                     className = "order">
-                    Оформить заказ</button>
+                    Place an order</button>
         </>
     );
 };
+
+const EmptyCart = () => {
+    return (
+        <div className = "cart_message">Please select products on the Menu page first</div>
+    )
+}
 
 const generateOrder = (items) => {
     const newOrder = items.map(item => {
         return {
             id: item.id,
-            qtty: item.qtty
+            quantity: item.quantity
         }
     })
     return newOrder;
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({items}) => {
     return {
-        items: state.items
+        items
     }
 };
 

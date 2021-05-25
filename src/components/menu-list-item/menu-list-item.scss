@@ -38,5 +38,8 @@
         color: #fff;
         font-size: 16px;
         cursor: pointer;
+        &:hover {
+            opacity: .8;
+        }
     }
 }

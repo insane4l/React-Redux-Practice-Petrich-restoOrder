@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 import './app-header.scss';
 
-const AppHeader = ({total}) => {
+const AppHeader = ({totalPrice}) => {
     return (
         <header className="header">
             <Link className="header__link" to="/">
@@ -13,15 +13,15 @@ const AppHeader = ({total}) => {
             </Link>
             <Link className="header__link" to="/cart">
                 <img className="header__cart" src={cartIcon} alt="cart"></img>
-                Total: {total} $
+                Total: {totalPrice} $
             </Link>
         </header>
     )
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = ({totalPrice}) => {
     return {
-        total: state.totalPrice
+        totalPrice
     }
 }
 export default connect(mapStateToProps)(AppHeader);
