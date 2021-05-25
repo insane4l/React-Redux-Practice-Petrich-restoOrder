@@ -1,7 +1,9 @@
 const initialState = {
     menu: [],
     loading: true,
-    items: []
+    error: false,
+    items: [],
+    totalPrice: 0
 }
 
 const reducer = (state = initialState, action) => {
@@ -10,13 +12,21 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 menu: action.payload,
-                loading: false
+                loading: false,
+                error: false
             };
         case 'MENU_REQUESTED':
             return {
                 ...state,
                 menu: state.menu,
-                loading: true
+                loading: true,
+                error: false
+            };
+        case 'MENU_ERROR':
+            return {
+                ...state,
+                menu: state.menu,
+                error: true
             };
         case 'ITEM_ADD_TO_CART':
             const selectedItem = state.menu.find(item => item.id === action.payload);
